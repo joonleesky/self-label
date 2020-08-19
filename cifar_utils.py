@@ -5,12 +5,20 @@ import torch.nn as nn
 class CIFAR10Instance(torchvision.datasets.CIFAR10):
     """CIFAR10Instance Dataset.
     """
+<<<<<<< HEAD
     def __init__(self, root, train=True, transform=None, target_transform=None, download=True):
         super(CIFAR10Instance, self).__init__(root=root,
                                               train=train,
                                               transform=transform,
                                               target_transform=target_transform,
                                               download=download)
+=======
+    def __init__(self, root, train=True, transform=None, target_transform=None, download=False):
+        super(CIFAR10Instance, self).__init__(root=root,
+                                                           train=train,
+                                                           transform=transform,
+                                                           target_transform=target_transform)
+>>>>>>> 4a00094c1f0760a9efaf41abf9caf357ad12b0e3
 
 
     def __getitem__(self, index):
@@ -52,8 +60,13 @@ class CIFAR100Instance(CIFAR10Instance):
         'md5': '7973b15100ade9c7d40fb424638fde48',
     }
 
+<<<<<<< HEAD
 
 class Normalize(nn.Module):
+=======
+class Normalize(nn.Module):
+
+>>>>>>> 4a00094c1f0760a9efaf41abf9caf357ad12b0e3
     def __init__(self, power=2):
         super(Normalize, self).__init__()
         self.power = power
@@ -63,7 +76,10 @@ class Normalize(nn.Module):
         out = x.div(norm)
         return out
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a00094c1f0760a9efaf41abf9caf357ad12b0e3
 def kNN(net, trainloader, testloader, K, sigma=0.1, dim=128,use_pca=False):
     net.eval()
     # this part is ugly but made to be backwards-compatible. there was a change in cifar dataset's structure.
@@ -138,7 +154,10 @@ def kNN(net, trainloader, testloader, K, sigma=0.1, dim=128,use_pca=False):
         trainFeatures = torch.Tensor(trainFeatures)
         trainFeatures = normalize(trainFeatures).t()
         print('..done')
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a00094c1f0760a9efaf41abf9caf357ad12b0e3
     def eval_k_s(K_,sigma_):
         total = 0
         top1 = 0.
