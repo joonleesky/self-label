@@ -93,11 +93,7 @@ class Bottleneck(nn.Module):
 
 
 class ResNet(nn.Module):
-<<<<<<< HEAD
     def __init__(self, block, layers, in_channel=3, width=1, num_classes=[1000], feature_dim=2048):
-=======
-    def __init__(self, block, layers, in_channel=3, width=1, num_classes=[1000]):
->>>>>>> 4a00094c1f0760a9efaf41abf9caf357ad12b0e3
         self.inplanes = 64
         super(ResNet, self).__init__()
         self.headcount = len(num_classes)
@@ -114,17 +110,10 @@ class ResNet(nn.Module):
                             nn.AvgPool2d(7, stride=1),
         ])
         if len(num_classes) == 1:
-<<<<<<< HEAD
             self.top_layer = nn.Sequential(nn.Linear(feature_dim, num_classes[0]))
         else:
             for a, i in enumerate(num_classes):
                 setattr(self, "top_layer%d" % a, nn.Linear(feature_dim, i))
-=======
-            self.top_layer = nn.Sequential(nn.Linear(512*4, num_classes[0]))
-        else:
-            for a, i in enumerate(num_classes):
-                setattr(self, "top_layer%d" % a, nn.Linear(512*4, i))
->>>>>>> 4a00094c1f0760a9efaf41abf9caf357ad12b0e3
             self.top_layer = None
 
         for m in self.features.modules():
@@ -192,6 +181,7 @@ def resnet50(pretrained=False, **kwargs):
     model = ResNet(Bottleneck, [3, 4, 6, 3], **kwargs)
     return model
 
+
 def resnet101(pretrained=False, **kwargs):
     """Constructs a ResNet-101 model.
     Args:
@@ -200,21 +190,16 @@ def resnet101(pretrained=False, **kwargs):
     model = ResNet(Bottleneck, [3, 4, 23, 3], **kwargs)
     return model
 
+
 def resnetv1(num_classes=[1000]):
     """Encoder for instance discrimination and MoCo"""
-<<<<<<< HEAD
     return resnet50(num_classes=num_classes, feature_dim=2048)
+
 
 def resnetv1_18(num_classes=[1000]):
     """Encoder for instance discrimination and MoCo"""
     return resnet18(num_classes=num_classes, feature_dim=512)
-=======
-    return resnet50(num_classes=num_classes)
 
-def resnetv1_18(num_classes=[1000]):
-    """Encoder for instance discrimination and MoCo"""
-    return resnet18(num_classes=num_classes)
->>>>>>> 4a00094c1f0760a9efaf41abf9caf357ad12b0e3
 
 if __name__ == '__main__':
     import torch

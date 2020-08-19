@@ -128,22 +128,15 @@ parser.add_argument('--epochs', default=800, type=int, help='number of epochs to
 parser.add_argument('--batch-size', default=64, type=int, metavar='BS', help='batch size')
 
 # logging saving etc.
-<<<<<<< HEAD
 parser.add_argument('--datadir', default='./data',type=str)
-=======
 parser.add_argument('--datadir', default='/scratch/local/ramdisk/yuki/data',type=str)
->>>>>>> 4a00094c1f0760a9efaf41abf9caf357ad12b0e3
 parser.add_argument('--exp', default='./cifar', type=str, help='experimentdir')
 parser.add_argument('--type', default='10', type=int, help='cifar10 or 100')
 
 args = parser.parse_args()
 setup_runtime(2, [args.device])
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-<<<<<<< HEAD
 knn_dim = 512 # alenxet: 4096 / resnet-18: 512 / resnet-50: 2048
-=======
-knn_dim = 4096
->>>>>>> 4a00094c1f0760a9efaf41abf9caf357ad12b0e3
 best_acc = 0  # best test accuracy
 start_epoch = 0  # start from epoch 0 or last checkpoint epoch
 # Data
@@ -188,10 +181,6 @@ else:
 print('==> Building model..') ##########################################
 numc = [args.ncl] * args.hc
 model = models.__dict__[args.arch](num_classes=numc)
-<<<<<<< HEAD
-=======
-knn_dim = 4096
->>>>>>> 4a00094c1f0760a9efaf41abf9caf357ad12b0e3
 
 N = len(trainloader.dataset)
 optimize_times = ((args.epochs + 1.0001)*N*(np.linspace(0, 1, args.nopts))[::-1]).tolist()
